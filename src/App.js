@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Router, Switch, Link } from "react-router-dom";
+import history from "./services/history";
+import Login from "./components/login/login";
+import Register from "./components/register/register";
+import CompanyLayoutRoute from "./layouts/mainLayout/company";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <div className="App">
+        <p>hello world</p>
+
+        <img
+          style={{ height: "50px", width: "160px" }}
+          src="imgs/logo1.png"
+          alt=""
+        ></img>
+        <div>
+          <ul>
+            <li>
+              <Link to="/register">register</Link>
+            </li>
+            <li>
+              <Link to="/login">login</Link>
+            </li>
+          </ul>
+        </div>
+        <Switch>
+          <CompanyLayoutRoute path="/register" component={Register} />
+          <CompanyLayoutRoute path="/login" component={Login} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
